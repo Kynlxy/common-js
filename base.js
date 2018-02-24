@@ -68,7 +68,7 @@ var BaseControl = {
             xhr.send(params);
         }
     },
-    getParams: function(data) {
+    getParams: function (data) {
         var arr = [];
         for (var param in data) {
             arr.push(encodeURIComponent(param) + '=' + encodeURIComponent(data[param]));
@@ -327,7 +327,7 @@ var BaseControl = {
     /**
      * 清空所有cookies
      */
-    delAllCookies: function() {
+    delAllCookies: function () {
         //获取所有的cookies key
         var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
         if (keys) {
@@ -493,4 +493,17 @@ var BaseControl = {
         }
         return s.join(dec);
     },
+    deepClone: function (obj) {
+        if (typeof obj != "object") {
+            return obj;
+        }
+
+        var newObj = obj.constructor === Array ? [] : {};  //开辟一块新的内存空间
+
+        for (var i  in  obj) {
+            newObj [i] = deepClone(obj [i]);                 //通过递归实现深层的复制
+        }
+
+        return newObj;
+    }
 }
