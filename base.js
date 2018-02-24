@@ -493,6 +493,7 @@ var BaseControl = {
         }
         return s.join(dec);
     },
+    //深拷贝
     deepClone: function (obj) {
         if (typeof obj != "object") {
             return obj;
@@ -501,7 +502,7 @@ var BaseControl = {
         var newObj = obj.constructor === Array ? [] : {};  //开辟一块新的内存空间
 
         for (var i  in  obj) {
-            newObj [i] = deepClone(obj [i]);                 //通过递归实现深层的复制
+            newObj [i] = this.deepClone(obj [i]);                 //通过递归实现深层的复制
         }
 
         return newObj;
